@@ -1,0 +1,33 @@
+nav {
+  display: flex;
+  justify-content: space-around;
+  padding: 1rem;
+  border-bottom: 2px solid white;
+  background-color: #333;
+}
+
+.nav-link {
+  padding: 1rem 1rem 1rem 5px;
+  border-left: 5px solid crimson;
+  border-radius: 4px;
+  background-color: #464343;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #464343;
+  }
+
+  &.active {
+    color: crimson;
+    background-color: white;
+  }
+
+  @media all and (max-width: 640px){
+    padding: 0 0 0 5px;
+    background-color: transparent;
+    border-radius: unset;
+  }
+}

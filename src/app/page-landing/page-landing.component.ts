@@ -9,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
   `,
   styles: [`
     :host {
-      /*background-color: gray;*/
+      background-position: left;
+      background-image: url(../../assets/x-men/X-Men_Vol_2_1_Full_Gatefold_Remastered_Cover--small.jpg);
+      background-size: cover;
+      background-attachment: fixed;
+      background-blend-mode: lighten;
     }
   `]
 })
