@@ -29,21 +29,16 @@ import {LocalizationService} from '../localization.service';
             animation-play-state: running;
             animation-timing-function: ease-in-out;
 
-            /*transition-property: all;*/
-            /*transition-duration: 4s;*/
-            /*transition-timing-function: ease-in-out;*/
         }
 
         .a1 {
             right: 0;
             animation-delay: 0ms;
-            /*transition-delay: 0ms;*/
         }
 
         .a2 {
             right: 100%;
             animation-delay: 1s;
-            /*transition-delay: 1s;*/
         }
 
         @keyframes running {
@@ -61,13 +56,11 @@ export class PageLandingComponent implements OnInit {
 
     location;
 
-    /*time;*/
 
     constructor(private localization: LocalizationService) {
     }
 
     ngOnInit() {
-        /*this.getTime();*/
         this.localization.navigatorGeolocationGetCurrentPosition();
 
         setTimeout(this.getLocation.bind(this), 3000);
@@ -78,28 +71,11 @@ export class PageLandingComponent implements OnInit {
             this.localization.callGoogle()
                 .subscribe(
                     x => {
-                        // console.info('🤦️', x);
+                        console.info('🤦️', x);
                         x ? this.location = x.results[0].address_components[5].long_name : console.error('🤦‍♂️');
                     },
                     error1 => console.error(error1),
                     () => null);
         }
     }
-
-    /*getTime(): void {
-        this.time = new Observable<any>(
-            (observer: Observer<any>) => {
-                setInterval(() => {
-                        const hour = new Date().getHours();
-                        const min = new Date().getMinutes();
-                        const sec = new Date().getSeconds();
-                        const ms = new Date().getMilliseconds();
-                        const full = {hour, min, sec, ms};
-                        /!*sending an OBJECT*!/
-                        observer.next(full);
-                    },
-                    100);
-            });
-    }*/
-
 }

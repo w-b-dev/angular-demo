@@ -15,14 +15,12 @@ export class LocalizationService {
     navigatorGeolocationGetCurrentPosition(): void {
         /* watch out for an binding issue / closure */
         /* FIRST PARAMETER: A callback function that takes a Position object as its sole input parameter. */
-        navigator.geolocation.getCurrentPosition(this.getDecodedLocation.bind(this), this.handleError, {enableHighAccuracy: true});
+        navigator.geolocation.getCurrentPosition(this.getDecodedLocation.bind(this));
     }
 
-    getDecodedLocation(currentPosition): void {
-        const pos = `${currentPosition.coords.latitude.toFixed(4)},${currentPosition.coords.longitude.toFixed(4)}`;
-        console.info('🚀', pos);
+    getDecodedLocation(currentPosition: Position): void {
         /* watch out for an binding issue / closure */
-        this.composeURL(pos);
+        this.composeURL(currentPosition);
         this.callGoogle();
     }
 
@@ -31,7 +29,10 @@ export class LocalizationService {
         console.error(error);
     }
 
-    composeURL(pos: string): void {
+    composeURL(currentPosition: Position): void {
+        console.info('🚀', currentPosition);
+        const pos = `${currentPosition.coords.latitude.toFixed(4)},${currentPosition.coords.longitude.toFixed(4)}`;
+        console.info('🚀🚀', pos);
         const mapsKey = environment.mapsKey;
         this.URL = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${pos}&key=${mapsKey}`;
     }
