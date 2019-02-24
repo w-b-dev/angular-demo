@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../environments/environment';
+import { GoogleMapsGeoCodingResponse } from './types/GoogleMapsGeoCodingResponse';
 
 @Injectable({
     providedIn: 'root'
@@ -30,16 +31,16 @@ export class LocalizationService {
     }
 
     composeURL(currentPosition: Position): void {
-        console.info('🚀', currentPosition);
+        // console.info('🚀', currentPosition);
         const pos = `${currentPosition.coords.latitude.toFixed(4)},${currentPosition.coords.longitude.toFixed(4)}`;
-        console.info('🚀🚀', pos);
+        // console.info('🚀🚀', pos);
         const mapsKey = environment.mapsKey;
         this.URL = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${pos}&key=${mapsKey}`;
     }
 
     callGoogle() {
         if (this.URL !== '') {
-            return this.httpClient.get(this.URL);
+            return this.httpClient.get<GoogleMapsGeoCodingResponse>(this.URL);
         } else {
             console.warn('🐉 There is no URL');
         }
