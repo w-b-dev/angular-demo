@@ -1,2 +1,5 @@
 <app-navigation></app-navigation>
-<router-outlet></router-outlet>
+<main [@routeTrigger]="which(route)">
+  <!--output directive (established through #outlet="outlet")-->
+  <router-outlet #route="outlet"></router-outlet>
+</main>

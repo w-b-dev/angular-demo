@@ -1,0 +1,53 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  //border-bottom: 2px solid white;
+  background-color: #333;
+}
+
+.nav-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0.75rem;
+  /*animated*/
+  color: #d8d8d8;
+  /*not animated*/
+  text-transform: uppercase;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  transition-property: color;
+  transition-duration: 150ms;
+  transition-timing-function: ease-in-out;
+
+  &.active {
+    color: #ecc809;
+  }
+  //&:hover {
+    /*animated*/
+    //color: white;
+    //&.active {
+    //  color: crimson;
+    //}
+    /*TODO: DISABLED NOT IMPLEMENTED YET*/
+  //  &.disabled::before {
+  //    content: "⛔";
+  //    color: crimson;
+  //  }
+  //}
+
+  /*utility -- start*/
+  &.give-me-some-space {
+    margin-right: auto;
+  }
+  /*utility -- finish*/
+
+  @media all and (max-width: 640px){
+    padding: 0 0 0 5px;
+    border-left-width: 5px;
+    background-color: transparent;
+    border-radius: unset;
+  }
+}

@@ -3,13 +3,15 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-page-landing',
   template: `
-    <p>
-      page-landing works!
-    </p>
+    <article class="demo-article">
+      👍
+    </article>
   `,
   styles: [`
     :host {
-      /*background-color: gray;*/
+      display: flex;
+      height: 100%;
+      background-color: antiquewhite;
     }
   `]
 })
