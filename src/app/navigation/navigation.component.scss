@@ -2,7 +2,7 @@ nav {
   display: flex;
   justify-content: space-between;
   padding: 1rem;
-  border-bottom: 2px solid white;
+  //border-bottom: 2px solid white;
   background-color: #333;
 }
 
@@ -12,7 +12,7 @@ nav {
   align-items: center;
   margin: 0 0.75rem;
   /*animated*/
-  color: #b8b8b8;
+  color: #d8d8d8;
   /*not animated*/
   text-transform: uppercase;
   font-weight: bold;
@@ -23,21 +23,20 @@ nav {
   transition-timing-function: ease-in-out;
 
   &.active {
-    color: #FFEB3B;
+    color: #ecc809;
   }
-  &:hover {
+  //&:hover {
     /*animated*/
-    color: white;
-    &.active {
-      color: crimson;
-    }
-
+    //color: white;
+    //&.active {
+    //  color: crimson;
+    //}
     /*TODO: DISABLED NOT IMPLEMENTED YET*/
-    &.disabled::before {
-      content: "⛔";
-      color: crimson;
-    }
-  }
+  //  &.disabled::before {
+  //    content: "⛔";
+  //    color: crimson;
+  //  }
+  //}
 
   /*utility -- start*/
   &.give-me-some-space {

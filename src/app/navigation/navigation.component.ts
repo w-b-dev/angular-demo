@@ -4,7 +4,8 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-navigation',
   template: `
     <nav>
-      <a routerLink="" routerLinkActive="active" class="nav-link give-me-some-space" title="Homepage">Public site</a>
+      <a routerLink="/" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active" class="nav-link give-me-some-space"
+         title="Homepage">Public site</a>
       <a routerLink="private" routerLinkActive="active" class="nav-link" title="Authenticated page">📈My Account</a>
       <a routerLink="login" routerLinkActive="active" class="nav-link" title="Login and Logout feature">🔐Logout</a>
     </nav>
