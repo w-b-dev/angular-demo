@@ -10,6 +10,7 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0 0.75rem;
   /*animated*/
   color: #b8b8b8;
   /*not animated*/
@@ -38,7 +39,11 @@ nav {
     }
   }
 
-
+  /*utility -- start*/
+  &.give-me-some-space {
+    margin-right: auto;
+  }
+  /*utility -- finish*/
 
   @media all and (max-width: 640px){
     padding: 0 0 0 5px;

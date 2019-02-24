@@ -4,9 +4,9 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-navigation',
   template: `
     <nav>
-      <a routerLink="landing" routerLinkActive="active" class="nav-link">The good ones</a>
-      <a routerLink="other" routerLinkActive="active" class="nav-link">Villains</a>
-      <!--<a routerLink="insistent" routerLinkActive="active" class="nav-link">Time travel issues...</a>-->
+      <a routerLink="" routerLinkActive="active" class="nav-link give-me-some-space" title="Homepage">Public site</a>
+      <a routerLink="private" routerLinkActive="active" class="nav-link" title="Authenticated page">📈My Account</a>
+      <a routerLink="login" routerLinkActive="active" class="nav-link" title="Login and Logout feature">🔐Logout</a>
     </nav>
   `,
   styleUrls: ['./navigation.component.scss'],
