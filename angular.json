@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "project-name": {
+    "angular-pwa-repo": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -36,7 +36,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/project-name",
+            "outputPath": "dist/angular-pwa-repo",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -82,18 +82,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "project-name:build"
+            "browserTarget": "angular-pwa-repo:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "project-name:build:production"
+              "browserTarget": "angular-pwa-repo:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "project-name:build"
+            "browserTarget": "angular-pwa-repo:build"
           }
         },
         "test": {
@@ -127,7 +127,7 @@
         }
       }
     },
-    "project-name-e2e": {
+    "angular-pwa-repo-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -136,11 +136,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "project-name:serve"
+            "devServerTarget": "angular-pwa-repo:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "project-name:serve:production"
+              "devServerTarget": "angular-pwa-repo:serve:production"
             }
           }
         },
@@ -156,5 +156,5 @@
       }
     }
   },
-  "defaultProject": "project-name"
+  "defaultProject": "angular-pwa-repo"
 }
