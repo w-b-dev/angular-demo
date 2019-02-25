@@ -49,10 +49,11 @@
               "src/styles.scss"
             ],
             "scripts": [],
-            "es5BrowserSupport": true
+            "es5BrowserSupport": false
           },
           "configurations": {
             "production": {
+              "outputPath": "public",
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -60,10 +61,10 @@
                 }
               ],
               "optimization": true,
-              "outputHashing": "all",
+              "outputHashing": "bundles",
               "sourceMap": true,
               "extractCss": true,
-              "namedChunks": false,
+              "namedChunks": true,
               "aot": true,
               "extractLicenses": false,
               "vendorChunk": true,
