@@ -2,9 +2,10 @@
   "name": "project-name",
   "version": "1.0.0",
   "scripts": {
+    "deploy": "firebase deploy",
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

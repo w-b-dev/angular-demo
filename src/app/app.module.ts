@@ -4,11 +4,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavigationComponent } from './navigation/navigation.component';
-import { PageLandingComponent } from './page-landing/page-landing.component';
-import { PageLoginComponent } from './page-login/page-login.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { PageOtherComponent } from './page-other/page-other.component';
+import { NavigationComponent } from './Features/navigation/navigation.component';
+import { PageLandingComponent } from './Routes/page-landing/page-landing.component';
+import { PageLoginComponent } from './Routes/page-login/page-login.component';
+import { PageNotFoundComponent } from './Routes/page-not-found/page-not-found.component';
+import { PageOtherComponent } from './Routes/page-other/page-other.component';
 
 @NgModule({
   declarations: [
