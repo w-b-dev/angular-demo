@@ -38,8 +38,12 @@ const routes: Routes = [
 
 /*For feature modules, call the RouterModule.forChild method to register additional routes.*/
 @NgModule({
-  // <-- debugging purposes only
-  imports: [RouterModule.forRoot(routes, { enableTracing: true })],
+  imports: [
+    RouterModule.forRoot(routes,
+      // <-- debugging purposes only
+      // { enableTracing: true },
+    ),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {
