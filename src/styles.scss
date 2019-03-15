@@ -10,6 +10,13 @@ body {
   user-select: none;
 }
 
+.hidden-on-desktop {
+  display: none !important;
+  @media all and (max-width: 640px) {
+    display: flex !important;
+  }
+}
+
 /*temp*/
 .demo-article {
   flex: 1;
@@ -21,6 +28,6 @@ body {
 
 @media all and (max-width: 640px){
   .demo-article {
-    font-size: 2rem;
+    font-size: 5rem;
   }
 }

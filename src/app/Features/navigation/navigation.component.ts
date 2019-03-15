@@ -9,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
         <span class="icon">🏠</span>
         <span class="description">Public site</span>
       </a>
+      <div class="spacer hidden-on-desktop" title="Up to an extra icon here">◽</div>
+      <div class="spacer hidden-on-desktop" title="Up to an extra icon here">◽</div>
       <a routerLink="private" routerLinkActive="active" class="nav-link" title="Authenticated page">
         <span class="icon">📈</span>
         <span class="description">My Account</span>
