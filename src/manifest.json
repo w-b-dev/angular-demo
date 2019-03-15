@@ -3,7 +3,7 @@
   "short_name": "Demo1",
   "theme_color": "crimson",
   "background_color": "cornflowerblue",
-  "display": "minimal-ui",
+  "display": "fullscreen",
   "scope": "/",
   "start_url": "/",
   "orientation": "portrait-primary",
