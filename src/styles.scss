@@ -11,13 +11,12 @@ body {
 }
 
 .hidden-on-desktop {
-  display: none !important;
+  display: none;
   @media all and (max-width: 640px) {
-    display: flex !important;
+    display: flex;
   }
 }
 
-/*temp*/
 .demo-article {
   flex: 1;
   display: flex;

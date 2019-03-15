@@ -1,76 +1,87 @@
+/* START local utility */
+&.give-me-some-space {
+  margin-right: auto;
+}
+
+/* END local utility */
+
 nav {
   display: flex;
   justify-content: space-between;
   padding: 1rem;
-  //border-bottom: 2px solid white;
   background-color: #333;
 }
 
 .nav-link {
-  margin: 0 0.75rem;
-  /*animated*/
+  /*position*/
+  /*box*/
+  margin-right: 3rem;
+  /*display*/
+  display: flex;
+  align-items: center;
+  /*typography*/
   color: #d8d8d8;
-  /*not animated*/
   text-transform: uppercase;
   font-weight: bold;
   text-decoration: none;
+  /*other*/
   cursor: pointer;
-  //transition-property: color;
-  //transition-duration: 150ms;
-  //transition-timing-function: ease-in-out;
+  /*transition*/
+  /*animation*/
+  transition-property: color;
+  transition-duration: 250ms;
+  transition-timing-function: ease-in-out;
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+
+  @media all and (max-width: 640px) {
+    margin-right: 0.5rem;
+  }
 
   &.active {
     color: #ecc809;
   }
 
-  /*utility -- start*/
-  &.give-me-some-space {
-    margin-right: auto;
-  }
-
-  /*utility -- finish*/
-
   .icon {
     font-size: 2.25rem;
     @media all and (max-width: 640px) {
-      font-size: 2.5rem;
+      font-size: 2.25rem;
     }
   }
 
   .description {
     font-size: 1.25rem;
+
     @media all and (max-width: 640px) {
       display: none;
     }
   }
-
-  @media all and (max-width: 640px) {
-  //  empty
-  }
 }
 
-.spacer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 1;
-  font-size: 1.5rem;
-  opacity: 0.7;
-  filter: invert(55%);
-  transform: scale(0.6);
-  //&:nth-of-type(1) {
-  //  opacity: 0.5;
-  //  filter: invert(75%);
-  //  transform: scale(1);
-  //}
-  //&:nth-of-type(2) {
-  //  opacity: 0.6;
-  //  filter: invert(65%);
-  //  transform: scale(0.85);
-  //}
-  //&:nth-of-type(3) {
-  //  opacity: 0.7;
-  //  filter: invert(55%);
-  //  transform: scale(0.6);
-  //}
-}
+//.spacer {
+//  display: flex;
+//  justify-content: center;
+//  align-items: center;
+//  flex: 1;
+//  font-size: 1.5rem;
+//  opacity: 0.7;
+//  filter: invert(55%);
+//  transform: scale(0.6);
+//&:nth-of-type(1) {
+//  opacity: 0.5;
+//  filter: invert(75%);
+//  transform: scale(1);
+//}
+//&:nth-of-type(2) {
+//  opacity: 0.6;
+//  filter: invert(65%);
+//  transform: scale(0.85);
+//}
+//&:nth-of-type(3) {
+//  opacity: 0.7;
+//  filter: invert(55%);
+//  transform: scale(0.6);
+//}
+//}
