@@ -7,9 +7,6 @@ nav {
 }
 
 .nav-link {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   margin: 0 0.75rem;
   /*animated*/
   color: #d8d8d8;
@@ -25,29 +22,33 @@ nav {
   &.active {
     color: #ecc809;
   }
-  //&:hover {
-    /*animated*/
-    //color: white;
-    //&.active {
-    //  color: crimson;
-    //}
-    /*TODO: DISABLED NOT IMPLEMENTED YET*/
-  //  &.disabled::before {
-  //    content: "⛔";
-  //    color: crimson;
-  //  }
-  //}
 
   /*utility -- start*/
   &.give-me-some-space {
     margin-right: auto;
   }
+
   /*utility -- finish*/
 
-  @media all and (max-width: 640px){
+  .icon {
+    font-size: 2.25rem;
+    @media all and (max-width: 640px) {
+      font-size: 2.5rem;
+    }
+  }
+
+  .description {
+    font-size: 1.25rem;
+    @media all and (max-width: 640px) {
+      display: none;
+    }
+  }
+
+  @media all and (max-width: 640px) {
     padding: 0 0 0 5px;
     border-left-width: 5px;
     background-color: transparent;
     border-radius: unset;
+
   }
 }

@@ -16,5 +16,11 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 120px;
+  font-size: 7rem;
+}
+
+@media all and (max-width: 640px){
+  .demo-article {
+    font-size: 2rem;
+  }
 }
