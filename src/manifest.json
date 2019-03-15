@@ -1,11 +1,14 @@
 {
-  "name": "angular-pwa-repo",
-  "short_name": "angular-pwa-repo",
-  "theme_color": "#1976d2",
-  "background_color": "#fafafa",
-  "display": "standalone",
+  "name": "PWA - Demo #1",
+  "short_name": "PWA1",
+  "theme_color": "crimson",
+  "background_color": "cornflowerblue",
+  "display": "minimal-ui",
   "scope": "/",
   "start_url": "/",
+  "orientation": "portrait-primary",
+  "lang": "en-US",
+  "description": "The app that helps you find the best food in town!",
   "icons": [
     {
       "src": "assets/icons/icon-72x72.png",
