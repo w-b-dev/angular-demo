@@ -4,27 +4,31 @@ import { BlogService } from '../../Shared/blog.service';
 @Component({
   selector: 'app-page-landing',
   template: `
-    <ol>
-      <li *ngFor="let result of results" class="result">{{ result }}</li>
-    </ol>
+    <!--<section class="results-container">-->
+      <article *ngFor="let result of results" class="single-result">{{ result }}</article>
+    <!--</section>-->
   `,
   styles: [
       `
       :host {
         display: flex;
+        flex-wrap: wrap;
         height: 100%;
-        background-color: antiquewhite;
+        background-color: ghostwhite;
       }
 
-      .result {
+      .single-result {
         font-size: 0.7rem;
+        padding: 1rem;
+        background-color: rgba(220, 20, 60, 0.5);
+        margin: 1rem;
       }
     `,
   ],
 })
 export class PageLandingComponent implements OnInit {
 
-  results = [];
+  results: Array<string>;
 
   constructor(private blogService: BlogService) {
   }
@@ -34,21 +38,9 @@ export class PageLandingComponent implements OnInit {
   }
 
   consumeService() {
-    this.blogService.getAllRoutes()
-      .subscribe(x => {
-        // Inspect every route
-        for ( let y in x.routes ) {
-          // Check suggested by TS compiler
-          if ( x.routes.hasOwnProperty(y) ) {
-            y = y.split('/wp/v2/');
-            if ( y && y[1] && y[1].startsWith('posts', 0) ) {
-              console.info('No good');
-            }
-            // Save the route in the array
-            this.results.push(y[1]);
-          }
-        }
-      });
+    this.results = this.blogService.filterMainEndpoints();
+    console.info('Consuming service.');
+    console.info(this.results);
   }
 
 }
