@@ -3,16 +3,7 @@ import { BlogService } from '../../Shared/blog.service';
 
 @Component({
   selector: 'app-page-landing',
-  template: `
-    <section class="results-container">
-      <article *ngFor="let result of results" class="single-result">
-        {{ result }}
-      </article>
-    </section>
-    <section class="result-details">
-      <pre>{{results | json}}</pre>
-    </section>
-  `,
+  templateUrl: 'page-landing.component.html',
   styleUrls: ['page-landing.component.scss'],
 })
 export class PageLandingComponent implements OnInit {
@@ -30,4 +21,12 @@ export class PageLandingComponent implements OnInit {
     this.results = this.blogService.filterMainEndpoints();
   }
 
+  /*TODO: in a future update, save selections to the Store for state management*/
+  setActive(event: MouseEvent) {
+    // TS suggestions to use the explicit type assertion 'as'
+    const element: HTMLElement = event.target as HTMLElement;
+    element.classList.contains('active')
+      ? element.classList.remove('active')
+      : element.classList.add('active');
+  }
 }
