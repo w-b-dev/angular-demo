@@ -1,3 +1,4 @@
+/*Default elements*/
 body {
   display: flex;
   flex-direction: column;
@@ -5,10 +6,18 @@ body {
   height: 100vh;
   max-height: 100vh;
   overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 16px;
-  font-family: monospace;
   user-select: none;
 }
+
+pre {
+  color: #333333;
+  white-space: pre-wrap;
+  font-family: monospace;
+  font-size: 0.8rem;
+}
+/*Global utilities*/
 
 .hidden-on-desktop {
   display: none;
@@ -17,6 +26,7 @@ body {
   }
 }
 
+/*TODO: temp*/
 .demo-article {
   flex: 1;
   display: flex;
