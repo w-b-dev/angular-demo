@@ -1,14 +1,13 @@
-<section class="results-container">
+<section class="results-menu-sidebar">
   <h3 class="section-title">Routes available</h3>
-  <button *ngFor="let result of results" class="single-result" (click)="setActive($event)">
-    {{ result }}
-  </button>
+  <section class="results-container">
+    <button *ngFor="let result of results1" class="single-result" (click)="selectRoute($event)">
+      {{ result }}
+    </button>
+  </section>
 </section>
 
 <section class="result-details-container">
   <h3 class="section-title">Results:</h3>
-  <pre>{{results | json}}</pre>
-  <!--TODO: show results based on endpoint selection on the left menu-->
-  <!--<h2>Selection #2</h2>-->
-  <!--<pre>{{results | json}}</pre>-->
+  <pre>{{results2 | json}}</pre>
 </section>

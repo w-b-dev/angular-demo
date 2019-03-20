@@ -8,35 +8,42 @@ import { BlogService } from '../../Shared/blog.service';
 })
 export class PageLandingComponent implements OnInit {
 
-  results: Array<string>;
+  results1: Array<string>;
+  results2: Array<string>;
 
   constructor(private blogService: BlogService) {
   }
 
   ngOnInit() {
     this.consumeService();
+    this.results2 = ['Click on the left to try it.'];
   }
 
   consumeService() {
-    this.results = this.blogService.filterMainEndpoints();
+    this.results1 = this.blogService.filterMainEndpoints();
   }
 
   /*TODO: in a future update, save selections to the Store for state management*/
-  setActive(event: MouseEvent) {
+  selectRoute(event: MouseEvent) {
     // TS suggestions to use the explicit type assertion 'as'
     const element: HTMLElement = event.target as HTMLElement;
+    this.filterActiveClass(element);
+    this.results2 = this.blogService.filterSpecificEndpoint(element.innerText);
+  }
 
+  filterActiveClass(element: HTMLElement) {
     // Inspect all elements under the target's parent
     /*TODO: fix type checking warning*/
+    // @ts-ignore
     for ( const parentElementKey of element.parentElement.childNodes ) {
       // If the element in the loop is the target, toggle active class
-      if (parentElementKey === element) {
+      if ( parentElementKey === element ) {
         element.classList.contains('active')
           ? element.classList.remove('active')
           : element.classList.add('active');
       } else {
         // If the element in the loop is NOT the target, remove active class
-        if (parentElementKey.classList && parentElementKey.classList.contains('active')) {
+        if ( parentElementKey.classList && parentElementKey.classList.contains('active') ) {
           parentElementKey.classList.remove('active');
         }
       }

@@ -1,6 +1,7 @@
 :host {
   display: flex;
   height: inherit;
+  max-height: inherit;
 
   & > * {
     overflow: auto;
@@ -13,14 +14,22 @@
   display: flex;
   align-items: center;
   text-decoration: underline;
+  max-height: 2rem;
+  //background-color: rebeccapurple;
+}
+
+.results-menu-sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
 }
 
 .results-container {
+  flex: 1;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  width: 50%;
-  background-color: rgba(248, 248, 255, 0.8);
+  //background-color: rgba(248, 248, 255, 0.8);
 }
 
 .result-details-container {
