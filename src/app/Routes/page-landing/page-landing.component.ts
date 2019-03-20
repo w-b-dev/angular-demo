@@ -4,27 +4,16 @@ import { BlogService } from '../../Shared/blog.service';
 @Component({
   selector: 'app-page-landing',
   template: `
-    <!--<section class="results-container">-->
-      <article *ngFor="let result of results" class="single-result">{{ result }}</article>
-    <!--</section>-->
+    <section class="results-container">
+      <article *ngFor="let result of results" class="single-result">
+        {{ result }}
+      </article>
+    </section>
+    <section class="result-details">
+      <pre>{{results | json}}</pre>
+    </section>
   `,
-  styles: [
-      `
-      :host {
-        display: flex;
-        flex-wrap: wrap;
-        height: 100%;
-        background-color: ghostwhite;
-      }
-
-      .single-result {
-        font-size: 0.7rem;
-        padding: 1rem;
-        background-color: rgba(220, 20, 60, 0.5);
-        margin: 1rem;
-      }
-    `,
-  ],
+  styleUrls: ['page-landing.component.scss'],
 })
 export class PageLandingComponent implements OnInit {
 
@@ -39,8 +28,6 @@ export class PageLandingComponent implements OnInit {
 
   consumeService() {
     this.results = this.blogService.filterMainEndpoints();
-    console.info('Consuming service.');
-    console.info(this.results);
   }
 
 }
