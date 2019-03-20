@@ -25,8 +25,21 @@ export class PageLandingComponent implements OnInit {
   setActive(event: MouseEvent) {
     // TS suggestions to use the explicit type assertion 'as'
     const element: HTMLElement = event.target as HTMLElement;
-    element.classList.contains('active')
-      ? element.classList.remove('active')
-      : element.classList.add('active');
+
+    // Inspect all elements under the target's parent
+    /*TODO: fix type checking warning*/
+    for ( const parentElementKey of element.parentElement.childNodes ) {
+      // If the element in the loop is the target, toggle active class
+      if (parentElementKey === element) {
+        element.classList.contains('active')
+          ? element.classList.remove('active')
+          : element.classList.add('active');
+      } else {
+        // If the element in the loop is NOT the target, remove active class
+        if (parentElementKey.classList && parentElementKey.classList.contains('active')) {
+          parentElementKey.classList.remove('active');
+        }
+      }
+    }
   }
 }
