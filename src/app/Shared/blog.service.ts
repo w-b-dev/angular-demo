@@ -15,34 +15,47 @@ export class BlogService {
   }
 
   filterMainEndpoints(): Array<string> {
-    const results: Array<string> = [];
-    this.getAllRoutes()
-      .subscribe(response => {
-        /* Note: https://www.typescriptlang.org/docs/handbook/iterators-and-generators.html
-         * Both for..of and for..in statements iterate over lists;
-         * the values iterated on are different though, for..in returns a list of keys on the object being iterated,
-         * whereas for..of returns a list of values of the numeric properties of the object being iterated. */
-        // Inspect every route and get the KEY
-        for ( let route in response.routes ) {
-          // Check suggested by TS compiler
-          if ( response.routes.hasOwnProperty(route) ) {
-            // console.log('Instance:', y);
-            const routeFullSegment = route.split('/wp/v2/');
-            // Check if there's actually any route -- because a[0] is always empty here
-            if ( routeFullSegment[1] ) {
-              // Splits the route in possibly multiple nested sections
-              const routeRelevantSegment = routeFullSegment[1].split('/');
-              // Get the first element (base route)
-              route = routeRelevantSegment[0];
-              // Check if values hasn't been added before
-              if ( results.indexOf(route) === -1 ) {
-                // Save the route in the array
-                results.push(route);
-              }
-            }
+    let results: Array<string> = [];
+    if ( localStorage.getItem('ALL_ROUTES') && localStorage.getItem('ALL_ROUTES').length > 0 ) {
+      console.warn('Do not request again.');
+      const response = JSON.parse(localStorage.getItem('ALL_ROUTES'));
+      results = this.processResponse(response, results);
+    } else {
+      this.getAllRoutes()
+        .subscribe(response => {
+          localStorage.setItem('ALL_ROUTES', JSON.stringify(response));
+          results = this.processResponse(response, results);
+        });
+    }
+    return results;
+  }
+
+  // Double check syntax for optional argument
+  private processResponse(response, results?) {
+    /* Note: https://www.typescriptlang.org/docs/handbook/iterators-and-generators.html
+           * Both for..of and for..in statements iterate over lists;
+           * the values iterated on are different though, for..in returns a list of keys on the object being iterated,
+           * whereas for..of returns a list of values of the numeric properties of the object being iterated. */
+    // Inspect every route and get the KEY
+    for ( let route in response.routes ) {
+      // Check suggested by TS compiler
+      if ( response.routes.hasOwnProperty(route) ) {
+        // console.log('Instance:', y);
+        const routeFullSegment = route.split('/wp/v2/');
+        // Check if there's actually any route -- because a[0] is always empty here
+        if ( routeFullSegment[1] ) {
+          // Splits the route in possibly multiple nested sections
+          const routeRelevantSegment = routeFullSegment[1].split('/');
+          // Get the first element (base route)
+          route = routeRelevantSegment[0];
+          // Check if values hasn't been added before
+          if ( results.indexOf(route) === -1 ) {
+            // Save the route in the array
+            results.push(route);
           }
         }
-      });
+      }
+    }
     return results;
   }
 
