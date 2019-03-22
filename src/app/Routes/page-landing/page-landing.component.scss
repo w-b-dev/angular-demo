@@ -62,11 +62,10 @@
   transition-timing-function: ease-in-out;
   transition-duration: 150ms;
 
+  // Played with scale and font-weight but results were odd
   &:focus, &:hover {
-    font-weight: bolder;
     box-shadow: 0 0 8px rgba(84, 84, 84, 0.95);
     color: black;
-    transform: scale(1.03);
   }
 
   &.active {
