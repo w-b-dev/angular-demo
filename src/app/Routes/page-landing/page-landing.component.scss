@@ -11,25 +11,33 @@
 
 .section-title {
   width: 100%;
+  min-height: 70px;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #888888;
+  margin-bottom: 1rem;
   display: flex;
   align-items: center;
   text-decoration: underline;
-  max-height: 2rem;
-  //background-color: rebeccapurple;
 }
 
 .results-menu-sidebar {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 20%;
+  padding: 1rem 4px;
+
+  @media all and (max-width: 640px) {
+    width: 40%;
+  }
 }
 
 .results-container {
   flex: 1;
   display: flex;
   justify-content: center;
+  align-items: flex-start;
   flex-wrap: wrap;
-  //background-color: rgba(248, 248, 255, 0.8);
+  //margin: auto;
 }
 
 .result-details-container {
@@ -49,12 +57,13 @@
   padding: 1rem;
   background-color: rgba(204, 204, 204, 0.5);
   margin: 0.5rem;
-  min-width: 150px;
-  width: 25%;
+  width: 150px;
+  max-width: 90%;
+  height: 100px;
   text-align: center;
   box-shadow: 0 0 8px rgba(84, 84, 84, 0.5);
   border-radius: 0.1rem;
-  border: none;
+  border: 1px solid transparent;
   text-transform: capitalize;
   color: #333333;
   cursor: pointer;
@@ -63,12 +72,19 @@
   transition-duration: 150ms;
 
   // Played with scale and font-weight but results were odd
+  // Effect should not change container size, since impacts others
   &:focus, &:hover {
     box-shadow: 0 0 8px rgba(84, 84, 84, 0.95);
     color: black;
+    border: 1px solid rgba(159, 159, 255, 0.95);
+    background-color: white;
   }
 
   &.active {
     background-color: rgba(159, 159, 255, 0.95);
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 0 8px #000;
+    border: 1px solid #000;
   }
 }
