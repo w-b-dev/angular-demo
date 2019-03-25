@@ -80,10 +80,11 @@ export class BlogService {
 
   private getSpecificRoute(specificRoute: string) {
     /*TODO: check how to process 400 status codes before crashing*/
-    if ( specificRoute === 'Settings'
-      || specificRoute === 'Themes'
-      || specificRoute === 'Users'
-      || specificRoute === 'Block-renderer' ) {
+    specificRoute = specificRoute.toLowerCase();
+    if ( specificRoute === 'settings'
+      || specificRoute === 'themes'
+      || specificRoute === 'users'
+      || specificRoute === 'block-renderer' ) {
       return new Observable<Array<any>>(x => x.next([specificRoute + ' requires authentication.']));
     } else {
       return this.httpClient.get<Array<any>>(environment.blog + this.ENDPOINT_VERSION + '/' + specificRoute);
