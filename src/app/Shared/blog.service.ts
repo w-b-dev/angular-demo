@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { WPRoutes } from './types/Wordpress';
 
@@ -17,7 +17,7 @@ export class BlogService {
   filterMainEndpoints(): Array<string> {
     let results: Array<string> = [];
     if ( localStorage.getItem('ALL_ROUTES') && localStorage.getItem('ALL_ROUTES').length > 0 ) {
-      console.warn('Do not request again.');
+      console.warn('Do not request again.', 'ALL_ROUTES');
       const response = JSON.parse(localStorage.getItem('ALL_ROUTES'));
       results = this.processResponse(response, results);
     } else {
@@ -26,6 +26,56 @@ export class BlogService {
           localStorage.setItem('ALL_ROUTES', JSON.stringify(response));
           results = this.processResponse(response, results);
         });
+    }
+    return results;
+  }
+
+  filterSpecificEndpoint(specificRoute: string): Observable<Array<string>> {
+    // let results: Promise<Array<string>>;
+    if ( localStorage.getItem(specificRoute) && localStorage.getItem(specificRoute).length > 0 ) {
+      console.info(`${ specificRoute }: ✔ Located in storage.`);
+      const response = JSON.parse(localStorage.getItem(specificRoute));
+      // const x = this.processObject(response);
+      // return new Promise<Array<string>>((resolve) => resolve(response));
+      return of(response);
+      // results.then(y => console.log('y', y));
+      // return results;
+    } else {
+      return this.getSpecificRoute(specificRoute);
+        // .subscribe(response => {
+        //   localStorage.setItem(specificRoute, JSON.stringify(response));
+        //   // const x: Array<string> = this.processObject(response);
+        //   console.info(`${ specificRoute }: 🆕 Saving into storage.`, response);
+        //   // return new Promise<Array<string>>((resolve) => resolve(response));
+        //   return of(response);
+        //   // results.then(z => console.log('z', z));
+        //   // return results;
+        // });
+    }
+    // return results;
+  }
+
+  private processObject(response: Array<object>) {
+    const results: Array<any> = [];
+    if ( typeof response[Symbol.iterator] === 'function' ) {
+      // console.info('🔁' + specificRoute + '🔀 response is iterable');
+      if ( typeof response !== 'string' && response.length !== 0 ) {
+        /*TODO: check how to make response be recognized as iterable to avoid errors*/
+        /*TS2488: Type '{}' must have a '[Symbol.iterator]()' method that returns an iterator.*/
+        // @ts-ignore
+        for ( const route of response ) {
+          // console.log(route);
+          results.push(route);
+        }
+      } else {
+        response.length !== 0
+          ? results.push(response)
+          : results.push('Empty for now');
+      }
+    } else {
+      // console.info('➡' + specificRoute + '⬅ response is not iterable');
+      // console.table(response);
+      results.push(response);
     }
     return results;
   }
@@ -59,39 +109,11 @@ export class BlogService {
     return results;
   }
 
-  filterSpecificEndpoint(specificRoute: string): Array<string> {
-    const results: Array<any> = [];
-    this.getSpecificRoute(specificRoute)
-      .subscribe(response => {
-        if ( typeof response[Symbol.iterator] === 'function' ) {
-          // console.info('🔁' + specificRoute + '🔀 response is iterable');
-          if ( typeof response !== 'string' && response.length !== 0 ) {
-            /*TODO: check how to make response be recognized as iterable to avoid errors*/
-            /*TS2488: Type '{}' must have a '[Symbol.iterator]()' method that returns an iterator.*/
-            // @ts-ignore
-            for ( const route of response ) {
-              // console.log(route);
-              results.push(route);
-            }
-          } else {
-            response.length !== 0
-              ? results.push(response)
-              : results.push('Empty for now');
-          }
-        } else {
-          // console.info('➡' + specificRoute + '⬅ response is not iterable');
-          // console.table(response);
-          results.push(response);
-        }
-      });
-    return results;
-  }
-
   private getAllRoutes() {
     return this.httpClient.get<WPRoutes>(environment.blog + this.ENDPOINT_VERSION);
   }
 
-  private getSpecificRoute(specificRoute: string) {
+  private getSpecificRoute(specificRoute: string): Observable<Array<any>> {
     /*TODO: check how to process 400 status codes before crashing*/
     if ( specificRoute === 'Settings'
       || specificRoute === 'Themes'

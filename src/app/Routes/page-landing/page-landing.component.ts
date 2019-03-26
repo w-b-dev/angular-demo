@@ -8,27 +8,26 @@ import { BlogService } from '../../Shared/blog.service';
 })
 export class PageLandingComponent implements OnInit {
 
-  results1: Array<string>;
-  results2: Array<string>;
+  mainRoutesAvailable: Array<string>;
+  resultSpecificRouteCall: Array<string>;
 
   constructor(private blogService: BlogService) {
   }
 
   ngOnInit() {
-    this.consumeService();
-    this.results2 = ['Click on the left to try it.'];
-  }
-
-  consumeService() {
-    this.results1 = this.blogService.filterMainEndpoints();
+    this.mainRoutesAvailable = this.blogService.filterMainEndpoints();
+    // this.resultSpecificRouteCall = ['Click on the left to try it.'];
   }
 
   /*TODO: in a future update, save selections to the Store for state management*/
   selectRoute(event: MouseEvent) {
     // TS suggestions to use the explicit type assertion 'as'
     const element: HTMLElement = event.target as HTMLElement;
+    // Method to clear the active class to all but one element
     this.filterActiveClass(element);
-    this.results2 = this.blogService.filterSpecificEndpoint(element.innerText);
+    // Call the service to provide results.
+    this.blogService.filterSpecificEndpoint(element.innerText)
+      .subscribe(x => this.resultSpecificRouteCall = x);
   }
 
   filterActiveClass(element: HTMLElement) {
