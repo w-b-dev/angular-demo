@@ -9,14 +9,14 @@ import { BlogService } from '../../Shared/blog.service';
 export class PageLandingComponent implements OnInit {
 
   mainRoutesAvailable: Array<string>;
-  resultSpecificRouteCall: Array<string>;
+  resultSpecificRouteCall: Array<any>;
+  endpoint: string;
 
   constructor(private blogService: BlogService) {
   }
 
   ngOnInit() {
-    this.mainRoutesAvailable = this.blogService.filterMainEndpoints();
-    // this.resultSpecificRouteCall = ['Click on the left to try it.'];
+    this.mainRoutesAvailable = this.blogService.checkAllRoutesStorage();
   }
 
   /*TODO: in a future update, save selections to the Store for state management*/
@@ -26,8 +26,10 @@ export class PageLandingComponent implements OnInit {
     // Method to clear the active class to all but one element
     this.filterActiveClass(element);
     // Call the service to provide results.
-    this.blogService.filterSpecificEndpoint(element.innerText)
-      .subscribe(x => this.resultSpecificRouteCall = x);
+    this.endpoint = element.innerText;
+    console.info(`(out) this.resultSpecificRouteCall`, this.resultSpecificRouteCall);
+    this.blogService.checkSpecificEndpointStorage(this.endpoint)
+      .then(result => this.resultSpecificRouteCall = result);
   }
 
   filterActiveClass(element: HTMLElement) {

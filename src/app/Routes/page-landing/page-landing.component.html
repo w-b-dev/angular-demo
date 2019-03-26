@@ -8,6 +8,8 @@
 </section>
 
 <section class="result-details-container">
-  <h3 class="section-title">Results:</h3>
-  <pre>{{resultSpecificRouteCall | json }}</pre>
+  <h3 class="section-title">Results: {{ endpoint }}</h3>
+  <pre>{{resultSpecificRouteCall
+    ? (resultSpecificRouteCall | json)
+      : 'Click on the left to try it.' }}</pre>
 </section>
