@@ -9,6 +9,23 @@
   }
 }
 
+/*start TODO: temp*/
+.demo-article {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 7rem;
+}
+
+@media all and (max-width: 640px) {
+  .demo-article {
+    font-size: 5rem;
+  }
+}
+
+/*end TODO: temp*/
+
 .section-title {
   width: 100%;
   min-height: 70px;

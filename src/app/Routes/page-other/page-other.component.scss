@@ -8,6 +8,7 @@
 .demo-article {
   flex-direction: column;
   font-size: unset;
+  overflow: auto;
 
   @media all and (max-width: 640px) {
     display: unset;
@@ -15,7 +16,6 @@
 
   .section-title {
     padding: 1rem;
-    //text-align: center;
     text-transform: capitalize;
 
     &.bullet:before {
