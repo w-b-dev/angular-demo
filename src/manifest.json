@@ -1,14 +1,14 @@
 {
-  "name": "Demo 1.2.0",
-  "short_name": "Demo 1.2",
-  "theme_color": "crimson",
-  "background_color": "cornflowerblue",
+  "name": "Demo 1.3.0",
+  "short_name": "Demo 1.3",
+  "theme_color": "#333333",
+  "background_color": "black",
   "display": "fullscreen",
   "scope": "/",
   "start_url": "/",
   "orientation": "portrait-primary",
-  "lang": "en-US",
-  "description": "The app that helps you find the best food in town!",
+  "lang": "en-CA",
+  "description": "This is a demo web application, PWA and SPA made by Daniel at iam@w-b.dev",
   "icons": [
     {
       "src": "assets/icons/icon-16x16.png",
