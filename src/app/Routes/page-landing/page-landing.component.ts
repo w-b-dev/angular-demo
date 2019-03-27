@@ -30,15 +30,15 @@ export class PageLandingComponent implements OnInit {
     if ( this.blogService.checkSpecificEndpointStorage(this.endpoint) !== undefined ) {
       this.blogService.checkSpecificEndpointStorage(this.endpoint)
         .subscribe(result => {
-          console.log(`${this.endpoint} OK on 1st pass`);
+          // console.log(`${this.endpoint} OK on 1st pass`);
           this.resultSpecificRouteCall = result;
         });
     } else {
-      // Wait a whole second to retry loading from a slow SYNCHRONOUS local storage
+      // Wait a whole second to retry loading from a slow SYNCHRONOUS storage
       setTimeout(() => {
         this.blogService.checkSpecificEndpointStorage(this.endpoint)
           .subscribe(result => {
-            console.log(`${this.endpoint} OK on 2nd pass`);
+            // console.log(`${this.endpoint} OK on 2nd pass`);
             this.resultSpecificRouteCall = result;
           });
       }, 1000);
@@ -65,7 +65,7 @@ export class PageLandingComponent implements OnInit {
   }
 
   clearStorage() {
-    localStorage.clear();
+    sessionStorage.clear();
     console.clear();
   }
 }

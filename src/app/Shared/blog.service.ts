@@ -23,14 +23,14 @@ export class BlogService {
 
   checkAllRoutesStorage(): Array<string> {
     let results: Array<string> = [];
-    if ( localStorage.getItem('ALL_ROUTES') && localStorage.getItem('ALL_ROUTES').length > 0 ) {
+    if ( sessionStorage.getItem('ALL_ROUTES') && sessionStorage.getItem('ALL_ROUTES').length > 0 ) {
       // console.warn('Do not request again.', 'ALL_ROUTES');
-      const response = JSON.parse(localStorage.getItem('ALL_ROUTES'));
+      const response = JSON.parse(sessionStorage.getItem('ALL_ROUTES'));
       results = this.processAllRoutesResponse(response, results);
     } else {
       this.getAllRoutes()
         .subscribe(response => {
-          localStorage.setItem('ALL_ROUTES', JSON.stringify(response));
+          sessionStorage.setItem('ALL_ROUTES', JSON.stringify(response));
           // console.info('Saving response', response);
           results = this.processAllRoutesResponse(response, results);
         });
@@ -84,14 +84,14 @@ export class BlogService {
   }
 
   checkSpecificEndpointStorage(specificRoute: string): Observable<Array<string>> {
-    if ( localStorage.getItem(specificRoute) && localStorage.getItem(specificRoute).length > 0 ) {
-      console.info(`${ specificRoute } in storage ✔`);
-      const response = JSON.parse(localStorage.getItem(specificRoute));
+    if ( sessionStorage.getItem(specificRoute) && sessionStorage.getItem(specificRoute).length > 0 ) {
+      // console.info(`${ specificRoute } in storage ✔`);
+      const response = JSON.parse(sessionStorage.getItem(specificRoute));
       return of(response);
     } else {
       this.getSpecificEndpoint(specificRoute)
         .subscribe(response => {
-          localStorage.setItem(specificRoute, JSON.stringify(response));
+          sessionStorage.setItem(specificRoute, JSON.stringify(response));
           console.log(`🆕 Saving ${ specificRoute } into storage.`);
           return of(response);
         });
