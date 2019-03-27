@@ -8,27 +8,41 @@ import { BlogService } from '../../Shared/blog.service';
 })
 export class PageLandingComponent implements OnInit {
 
-  results1: Array<string>;
-  results2: Array<string>;
+  mainRoutesAvailable: Array<string>;
+  resultSpecificRouteCall: Array<any>;
+  endpoint: string;
 
   constructor(private blogService: BlogService) {
   }
 
   ngOnInit() {
-    this.consumeService();
-    this.results2 = ['Click on the left to try it.'];
-  }
-
-  consumeService() {
-    this.results1 = this.blogService.filterMainEndpoints();
+    this.mainRoutesAvailable = this.blogService.checkAllRoutesStorage();
   }
 
   /*TODO: in a future update, save selections to the Store for state management*/
   selectRoute(event: MouseEvent) {
     // TS suggestions to use the explicit type assertion 'as'
     const element: HTMLElement = event.target as HTMLElement;
+    // Method to clear the active class to all but one element
     this.filterActiveClass(element);
-    this.results2 = this.blogService.filterSpecificEndpoint(element.innerText);
+    // Call the service to provide results.
+    this.endpoint = element.innerText;
+    if ( this.blogService.checkSpecificEndpointStorage(this.endpoint) !== undefined ) {
+      this.blogService.checkSpecificEndpointStorage(this.endpoint)
+        .subscribe(result => {
+          // console.log(`${this.endpoint} OK on 1st pass`);
+          this.resultSpecificRouteCall = result;
+        });
+    } else {
+      // Wait a whole second to retry loading from a slow SYNCHRONOUS storage
+      setTimeout(() => {
+        this.blogService.checkSpecificEndpointStorage(this.endpoint)
+          .subscribe(result => {
+            // console.log(`${this.endpoint} OK on 2nd pass`);
+            this.resultSpecificRouteCall = result;
+          });
+      }, 1000);
+    }
   }
 
   filterActiveClass(element: HTMLElement) {
@@ -48,5 +62,10 @@ export class PageLandingComponent implements OnInit {
         }
       }
     }
+  }
+
+  clearStorage() {
+    sessionStorage.clear();
+    console.clear();
   }
 }
