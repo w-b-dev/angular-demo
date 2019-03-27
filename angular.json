@@ -46,7 +46,8 @@
               "src/assets",
               "src/manifest.json",
               "src/.htaccess",
-              "src/web.config"
+              "src/web.config",
+              "src/robots.txt"
             ],
             "styles": [
               "src/styles.scss"
