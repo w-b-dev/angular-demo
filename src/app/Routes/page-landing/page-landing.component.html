@@ -1,15 +1,21 @@
 <section class="results-menu-sidebar">
   <h3 class="section-title">Routes available</h3>
   <section class="results-container">
+
+    <button class="single-result" (click)="clearStorage()" style="background-color: #dc143c80; color: white">
+      Clear all
+    </button>
+
     <button *ngFor="let singleRoute of mainRoutesAvailable" class="single-result" (click)="selectRoute($event)">
       {{ singleRoute }}
     </button>
+
   </section>
 </section>
 
 <section class="result-details-container">
   <h3 class="section-title">Results: {{ endpoint }}</h3>
-  <pre>{{resultSpecificRouteCall
-    ? (resultSpecificRouteCall | json)
-      : 'Click on the left to try it.' }}</pre>
+  <pre>
+    {{resultSpecificRouteCall ? (resultSpecificRouteCall | json) : 'Click on the left to try it.' }}
+  </pre>
 </section>

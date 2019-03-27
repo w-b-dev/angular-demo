@@ -83,33 +83,28 @@ export class BlogService {
     }
   }
 
-  async checkSpecificEndpointStorage(specificRoute: string): Promise<Array<string>> {
-    let results: Array<string>;
+  checkSpecificEndpointStorage(specificRoute: string): Observable<Array<string>> {
     if ( localStorage.getItem(specificRoute) && localStorage.getItem(specificRoute).length > 0 ) {
       console.info(`${ specificRoute } in storage ✔`);
       const response = JSON.parse(localStorage.getItem(specificRoute));
-      results = response;
-      return of(results).toPromise();
+      return of(response);
     } else {
-      await this.getSpecificEndpoint(specificRoute)
+      this.getSpecificEndpoint(specificRoute)
         .subscribe(response => {
           localStorage.setItem(specificRoute, JSON.stringify(response));
-          console.log(`🆕 ${ specificRoute }: Saving into storage.`, response);
-          // results = this.processSpecificEndpointResponse(response);
-          return of(response).toPromise();
-          // return of(results).toPromise();
+          console.log(`🆕 Saving ${ specificRoute } into storage.`);
+          return of(response);
         });
     }
-    // return of(results);
   }
 
-  private processSpecificEndpointResponse(response: Array<object>) {
+  /*private processSpecificEndpointResponse(response: Array<object>) {
     const results: Array<any> = [];
     if ( typeof response[Symbol.iterator] === 'function' ) {
       // console.info('🔁' + specificRoute + '🔀 response is iterable');
       if ( typeof response !== 'string' && response.length !== 0 ) {
-        /*TODO: check how to make response be recognized as iterable to avoid errors*/
-        /*TS2488: Type '{}' must have a '[Symbol.iterator]()' method that returns an iterator.*/
+        /!*TODO: check how to make response be recognized as iterable to avoid errors*!/
+        /!*TS2488: Type '{}' must have a '[Symbol.iterator]()' method that returns an iterator.*!/
         // @ts-ignore
         for ( const route of response ) {
           // console.log(route);
@@ -126,5 +121,5 @@ export class BlogService {
       results.push(response);
     }
     return results;
-  }
+  }*/
 }

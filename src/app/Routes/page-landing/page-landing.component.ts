@@ -27,9 +27,22 @@ export class PageLandingComponent implements OnInit {
     this.filterActiveClass(element);
     // Call the service to provide results.
     this.endpoint = element.innerText;
-    console.info(`(out) this.resultSpecificRouteCall`, this.resultSpecificRouteCall);
-    this.blogService.checkSpecificEndpointStorage(this.endpoint)
-      .then(result => this.resultSpecificRouteCall = result);
+    if ( this.blogService.checkSpecificEndpointStorage(this.endpoint) !== undefined ) {
+      this.blogService.checkSpecificEndpointStorage(this.endpoint)
+        .subscribe(result => {
+          console.log(`${this.endpoint} OK on 1st pass`);
+          this.resultSpecificRouteCall = result;
+        });
+    } else {
+      // Wait a whole second to retry loading from a slow SYNCHRONOUS local storage
+      setTimeout(() => {
+        this.blogService.checkSpecificEndpointStorage(this.endpoint)
+          .subscribe(result => {
+            console.log(`${this.endpoint} OK on 2nd pass`);
+            this.resultSpecificRouteCall = result;
+          });
+      }, 1000);
+    }
   }
 
   filterActiveClass(element: HTMLElement) {
@@ -49,5 +62,10 @@ export class PageLandingComponent implements OnInit {
         }
       }
     }
+  }
+
+  clearStorage() {
+    localStorage.clear();
+    console.clear();
   }
 }
