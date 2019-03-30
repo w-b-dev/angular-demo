@@ -11,6 +11,7 @@ export class PageLandingComponent implements OnInit {
   mainRoutesAvailable: Array<string>;
   resultSpecificRouteCall: Array<any>;
   endpoint: string;
+  loading = false;
 
   constructor(private blogService: BlogService) {
   }
@@ -34,12 +35,15 @@ export class PageLandingComponent implements OnInit {
           this.resultSpecificRouteCall = result;
         });
     } else {
+      this.loading = true;
+      this.resultSpecificRouteCall = null;
       // Wait a whole second to retry loading from a slow SYNCHRONOUS storage
       setTimeout(() => {
         this.blogService.checkSpecificEndpointStorage(this.endpoint)
           .subscribe(result => {
             // console.log(`${this.endpoint} OK on 2nd pass`);
             this.resultSpecificRouteCall = result;
+            this.loading = false;
           });
       }, 1000);
     }
