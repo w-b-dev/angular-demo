@@ -1,10 +1,12 @@
 <section class="results-menu-sidebar">
   <h3 class="section-title">Routes available</h3>
-  <section class="results-container">
+  <div *ngIf="mainRoutesAvailable === undefined || mainRoutesAvailable.length <= 0" class="loader"></div>
+  <section *ngIf="mainRoutesAvailable.length > 0" class="results-container">
 
     <button class="single-result custom-clear" (click)="clearStorage()">
       Clear all
     </button>
+
 
     <button *ngFor="let singleRoute of mainRoutesAvailable" class="single-result" (click)="selectRoute($event)">
       {{ singleRoute }}
@@ -15,7 +17,10 @@
 
 <section class="result-details-container">
   <h3 class="section-title">Results: {{ endpoint }}</h3>
-  <pre>
-    {{resultSpecificRouteCall ? (resultSpecificRouteCall | json) : 'Click on the left to try it.' }}
+
+  <div *ngIf="loading" class="loader"></div>
+
+  <pre *ngIf="!loading">
+    {{resultSpecificRouteCall ? (resultSpecificRouteCall | json) : (mainRoutesAvailable | json) }}
   </pre>
 </section>
