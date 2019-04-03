@@ -8,7 +8,9 @@
     </button>
 
 
-    <button *ngFor="let singleRoute of mainRoutesAvailable" class="single-result" (click)="selectRoute($event)">
+    <button *ngFor="let singleRoute of mainRoutesAvailable" class="single-result"
+            (click)="selectRoute($event)"
+            (mouseenter)="preloadRoute($event)">
       {{ singleRoute }}
     </button>
 
@@ -21,6 +23,10 @@
   <div *ngIf="loading" class="loader"></div>
 
   <pre *ngIf="!loading">
-    {{resultSpecificRouteCall ? (resultSpecificRouteCall | json) : (mainRoutesAvailable | json) }}
+    {{resultSpecificRouteCall
+    ? ( resultSpecificRouteCall | json
+    )
+    : ( mainRoutesAvailable | json
+    ) }}
   </pre>
 </section>

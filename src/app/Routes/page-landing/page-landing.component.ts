@@ -49,6 +49,13 @@ export class PageLandingComponent implements OnInit {
     }
   }
 
+  preloadRoute(event: MouseEvent) {
+    // TS suggestions to use the explicit type assertion 'as'
+    const element: HTMLElement = event.target as HTMLElement;
+    // Making a call just by checking it
+    this.blogService.checkSpecificEndpointStorage(element.innerText);
+  }
+
   filterActiveClass(element: HTMLElement) {
     // Inspect all elements under the target's parent
     /*TODO: fix type checking warning*/
