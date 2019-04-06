@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PageLandingComponent } from './Routes/page-landing/page-landing.component';
-import { PageLoginComponent } from './Routes/page-login/page-login.component';
 import { PageNotFoundComponent } from './Routes/page-not-found/page-not-found.component';
-import { PageOtherComponent } from './Routes/page-other/page-other.component';
 
 const routes: Routes = [
   {
@@ -15,14 +13,14 @@ const routes: Routes = [
   },
   {
     path: 'private',
-    component: PageOtherComponent,
+    loadChildren: './Routes/page-other/page-other.module#PageOtherModule',
     data: {
       animationFor: 'private',
     },
   },
   {
     path: 'login',
-    component: PageLoginComponent,
+    loadChildren: './Routes/page-login/page-login.module#PageLoginModule',
     data: {
       animationFor: 'login',
     },

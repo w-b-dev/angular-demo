@@ -8,18 +8,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './Features/navigation/navigation.component';
 import { PageLandingComponent } from './Routes/page-landing/page-landing.component';
-import { PageLoginComponent } from './Routes/page-login/page-login.component';
 import { PageNotFoundComponent } from './Routes/page-not-found/page-not-found.component';
-import { PageOtherComponent } from './Routes/page-other/page-other.component';
 
+// Import the minimal amount of isolated components here
 @NgModule({
   declarations: [
     AppComponent,
     PageNotFoundComponent,
     PageLandingComponent,
-    PageOtherComponent,
     NavigationComponent,
-    PageLoginComponent,
   ],
   imports: [
     BrowserModule,
