@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PageLandingComponent } from './Routes/page-landing/page-landing.component';
 import { PageNotFoundComponent } from './Routes/page-not-found/page-not-found.component';
+import { PageOtherComponent } from './Routes/page-other/page-other.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: PageLandingComponent,
+    component: PageOtherComponent,
     data: {
       animationFor: 'public',
     },
   },
   {
     path: 'private',
-    loadChildren: './Routes/page-other/page-other.module#PageOtherModule',
+    loadChildren: './Routes/page-landing/page-landing.module#PageLandingModule',
     data: {
       animationFor: 'private',
     },
@@ -44,5 +44,6 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
 })
+// @ts-ignore
 export class AppRoutingModule {
 }
