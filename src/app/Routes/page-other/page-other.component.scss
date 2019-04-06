@@ -15,6 +15,16 @@
     display: unset;
   }
 
+  & > * {
+    display: block;
+    max-width: 60%;
+    margin: auto;
+
+    @media all and (max-width: 640px) {
+      max-width: unset;
+    }
+  }
+
   .section-title {
     padding: 1rem;
     text-transform: capitalize;
