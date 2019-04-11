@@ -1,9 +1,97 @@
 <article class="demo-article">
-  <h3 class="section-title">Lighthouse report as per 2019-03-27</h3>
-  <picture>
-    <source srcset="assets/images/lighthouse-report-2019-03-27.webp" type="image/webp">
-    <img alt="report-2019-03-27" class="image" src="assets/images/lighthouse-report-2019-03-27.jpg">
-  </picture>
-  <h3 class="section-title bullet">Next step is to handle initial page load with either application shell or server-side rendering strategy (with hydration)</h3>
-  <h3 class="section-title bullet">After that I could possibly work on styling pattern a bit more flexible, (for instance) using a different layout for large rectangular images that are not readable on mobile devices. In this case I would simply highlight the 5 score metrics (circles on the top).</h3>
+
+  <h1 class="section-title hidden-on-desktop">Calculator</h1>
+
+  <!--  type of customer-->
+  <label class="input-container">
+    <span>Type of customer:</span>
+    <select id="type_customer" name="type_customer">
+      <option value="Contractor">Contractor</option>
+      <option value="Retail">Retail</option>
+      <option value="Dealer">Dealer</option>
+    </select>
+  </label>
+
+  <!--  skylight model -->
+  <label class="input-container">
+    <span>Skylight model:</span>
+    <select id="skylight_model" name="skylight_model">
+      <option value="PVCCM">PVCCM</option>
+      <option value="PVCSR">PVCSR</option>
+      <option value="FF">FF</option>
+      <option value="FFSR">FFSR</option>
+    </select>
+  </label>
+
+  <!--  OC dimensions -->
+  <hr>
+  <h2>OC dimensions</h2>
+  <label class="input-container">
+    <span>Width:</span>
+    <input placeholder="50" type="number" value="55">
+  </label>
+  <label class="input-container">
+    <span>Height:</span>
+    <input placeholder="50" type="number" value="55">
+  </label>
+  <hr>
+
+  <!--  Glazing type -->
+  <label class="input-container">
+    <span>Glazing type:</span>
+    <select id="glazing_type" name="glazing_type">
+      <option value="Dome">Dome</option>
+      <option value="Glass">Glass</option>
+    </select>
+  </label>
+
+  <!--  Number of domes -->
+  <label class="input-container">
+    <span>Number of domes:</span>
+    <select id="number_domes" name="number_domes">
+      <option value="Single">Single</option>
+      <option value="Double">Double</option>
+      <option value="Triple">Triple</option>
+    </select>
+  </label>
+
+  <!--  Tinted glazing -->
+  <label class="input-container">
+    <span>Tinted glazing</span>
+    <select id="tinted_glazing" name="tinted_glazing">
+      <option value="Yes">Yes</option>
+      <option value="No">No</option>
+    </select>
+  </label>
+  <!--  Frame finishing -->
+  <label class="input-container">
+    <span>Frame finishing:</span>
+    <select id="frame_finishing" name="frame_finishing">
+      <option value="Black">Black</option>
+      <option value="Mill">Mill</option>
+      <option value="Brown">Brown</option>
+    </select>
+  </label>
+
+  <!--  Price -->
+  <hr>
+  <label class="input-container price bigger">
+    <span>Price:</span>
+    <span>$430</span>
+  </label>
+
+  <!--  Oversize fee -->
+  <hr>
+  <label class="input-container price">
+    <span>Oversize fee:</span>
+    <span>$40</span>
+  </label>
+
+  <!--  Setup fee -->
+  <hr>
+  <label class="input-container price">
+    <span>Setup fee:</span>
+    <span>$30</span>
+  </label>
+
 </article>

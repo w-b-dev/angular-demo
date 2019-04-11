@@ -42,7 +42,8 @@
   flex-direction: column;
   width: 20%;
   min-width: 280px;
-  height: calc(100vh - 80px); /*Investigate*/
+  max-height: inherit;
+  height: calc(100vh - 80px); /*TODO: Investigate*/
   padding: 1rem;
 
   @media all and (max-width: 640px) {
