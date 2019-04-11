@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BlogService } from '../../Shared/blog.service';
+import { DummyTable } from '../../Shared/types/DummyTable';
 
 @Component({
   selector: 'app-page-landing',
@@ -8,16 +8,69 @@ import { BlogService } from '../../Shared/blog.service';
 })
 export class PageLandingComponent implements OnInit {
 
-  mainRoutesAvailable: Array<string>;
-  resultSpecificRouteCall: Array<any>;
+  selectedTable: object;
+  tables: Array<DummyTable> = [
+    {
+      table_id: 1,
+      table_name: 'Table 1',
+      columns: [
+        'Table 1 Column A0',
+        'Table 1 Column A1',
+        'Table 1 Column A2',
+        'Table 1 Column A3',
+      ],
+      rows: [
+        [
+          'Row A0',
+          'Row A1',
+          'Row A2',
+          'Row A3',
+        ],
+        [
+          'Row B0',
+          'Row B1',
+          'Row B2',
+          'Row B3',
+        ],
+      ],
+    },
+    {
+      table_id: 2,
+      table_name: 'Table 2',
+      columns: [
+        'Table 2 Column A0',
+        'Table 2 Column A1',
+        'Table 2 Column A2',
+        'Table 2 Column A3',
+      ],
+      rows: [
+        [
+          'Row A0',
+          'Row A1',
+          'Row A2',
+          'Row A3',
+        ],
+        [
+          'Row B0',
+          'Row B1',
+          'Row B2',
+          'Row B3',
+        ],
+        [
+          'Row C0',
+          'Row C1',
+          'Row C2',
+          'Row C3',
+        ],
+      ],
+    },
+  ];
   endpoint: string;
-  loading = false;
 
-  constructor(private blogService: BlogService) {
+  constructor() {
   }
 
   ngOnInit() {
-    this.mainRoutesAvailable = this.blogService.checkAllRoutesStorage();
   }
 
   /*TODO: in a future update, save selections to the Store for state management*/
@@ -28,32 +81,12 @@ export class PageLandingComponent implements OnInit {
     this.filterActiveClass(element);
     // Call the service to provide results.
     this.endpoint = element.innerText;
-    if ( this.blogService.checkSpecificEndpointStorage(this.endpoint) !== undefined ) {
-      this.blogService.checkSpecificEndpointStorage(this.endpoint)
-        .subscribe(result => {
-          // console.log(`${this.endpoint} OK on 1st pass`);
-          this.resultSpecificRouteCall = result;
-        });
-    } else {
-      this.loading = true;
-      this.resultSpecificRouteCall = null;
-      // Wait a whole second to retry loading from a slow SYNCHRONOUS storage
-      setTimeout(() => {
-        this.blogService.checkSpecificEndpointStorage(this.endpoint)
-          .subscribe(result => {
-            // console.log(`${this.endpoint} OK on 2nd pass`);
-            this.resultSpecificRouteCall = result;
-            this.loading = false;
-          });
-      }, 1000);
-    }
-  }
 
-  preloadRoute(event: MouseEvent) {
-    // TS suggestions to use the explicit type assertion 'as'
-    const element: HTMLElement = event.target as HTMLElement;
-    // Making a call just by checking it
-    this.blogService.checkSpecificEndpointStorage(element.innerText);
+    this.tables.forEach(e => {
+      if ( e.table_name === this.endpoint ) {
+        this.selectedTable = e;
+      }
+    });
   }
 
   filterActiveClass(element: HTMLElement) {
@@ -73,10 +106,5 @@ export class PageLandingComponent implements OnInit {
         }
       }
     }
-  }
-
-  clearStorage() {
-    sessionStorage.clear();
-    console.clear();
   }
 }

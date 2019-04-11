@@ -1,32 +1,57 @@
 <section class="results-menu-sidebar">
-  <h3 class="section-title">Routes available</h3>
-  <div *ngIf="mainRoutesAvailable === undefined || mainRoutesAvailable.length <= 0" class="loader"></div>
-  <section *ngIf="mainRoutesAvailable.length > 0" class="results-container">
+  <h3 class="section-title">List of all tables with standard measurements</h3>
+  <!--  <section *ngIf="mainRoutesAvailable.length > 0" class="results-container">-->
+  <section class="results-container">
 
-    <button class="single-result custom-clear" (click)="clearStorage()">
-      Clear all
+    <button (click)="selectRoute($event)"
+            class="single-result">
+      Table 1
     </button>
 
+    <button (click)="selectRoute($event)"
+            class="single-result">
+      Table 2
+    </button>
+    <button (click)="selectRoute($event)"
+            class="single-result">
+      Table 1
+    </button>
 
-    <button *ngFor="let singleRoute of mainRoutesAvailable" class="single-result"
-            (click)="selectRoute($event)"
-            (mouseenter)="preloadRoute($event)">
-      {{ singleRoute }}
+    <button (click)="selectRoute($event)"
+            class="single-result">
+      Table 2
+    </button>
+    <button (click)="selectRoute($event)"
+            class="single-result">
+      Table 1
+    </button>
+
+    <button (click)="selectRoute($event)"
+            class="single-result">
+      Table 2
+    </button>
+    <button (click)="selectRoute($event)"
+            class="single-result">
+      Table 1
+    </button>
+
+    <button (click)="selectRoute($event)"
+            class="single-result">
+      Table 2
+    </button>
+    <button (click)="selectRoute($event)"
+            class="single-result">
+      Table 1
     </button>
 
   </section>
 </section>
 
 <section class="result-details-container">
-  <h3 class="section-title">Results: {{ endpoint }}</h3>
+  <h3 class="section-title">{{ endpoint }}</h3>
 
-  <div *ngIf="loading" class="loader"></div>
-
-  <pre *ngIf="!loading">
-    {{resultSpecificRouteCall
-    ? ( resultSpecificRouteCall | json
-    )
-    : ( mainRoutesAvailable | json
-    ) }}
+  <pre>
+{{ selectedTable | json }}
   </pre>
+
 </section>
