@@ -1,6 +1,6 @@
 {
-  "name": "Demo 1.3.0",
-  "short_name": "Demo 1.3",
+  "name": "Skylight Calculator v1.3.0",
+  "short_name": "Calculator v1.3.0",
   "theme_color": "#333333",
   "background_color": "black",
   "display": "fullscreen",
@@ -8,7 +8,7 @@
   "start_url": "/",
   "orientation": "portrait-primary",
   "lang": "en-CA",
-  "description": "This is a demo web application, PWA and SPA made by Daniel at iam@w-b.dev",
+  "description": "This is a web application, PWA and SPA made by Daniel at iam@w-b.dev",
   "icons": [
     {
       "src": "assets/icons/icon-16x16.png",
