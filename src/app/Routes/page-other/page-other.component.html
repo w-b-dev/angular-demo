@@ -6,9 +6,13 @@
   <label class="input-container">
     <span>Type of customer:</span>
     <select id="type_customer" name="type_customer">
-      <option value="Contractor">Contractor</option>
-      <option value="Retail">Retail</option>
-      <option value="Dealer">Dealer</option>
+      <option
+        *ngFor="let a of calculationOptions.CustomerType"
+        value="{{ a }}"
+        (click)="updateCalculation('customer_type', a)"
+      >
+        {{ a }}
+      </option>
     </select>
   </label>
 
@@ -16,10 +20,13 @@
   <label class="input-container">
     <span>Skylight model:</span>
     <select id="skylight_model" name="skylight_model">
-      <option value="PVCCM">PVCCM</option>
-      <option value="PVCSR">PVCSR</option>
-      <option value="FF">FF</option>
-      <option value="FFSR">FFSR</option>
+      <option
+        *ngFor="let a of calculationOptions.SkylightModel"
+        value="{{ a }}"
+        (click)="updateCalculation('skylight_model', a)"
+      >
+        {{ a }}
+      </option>
     </select>
   </label>
 
@@ -28,11 +35,24 @@
   <h2>OC dimensions</h2>
   <label class="input-container">
     <span>Width:</span>
-    <input placeholder="50" type="number" value="55">
+    <input placeholder="50" type="number"
+           [(ngModel)]="calculation.oc_width"
+           (input)="updateCalculation('oc_width', $event.target.value)"
+    >
   </label>
   <label class="input-container">
     <span>Height:</span>
-    <input placeholder="50" type="number" value="55">
+    <input placeholder="50" type="number"
+           [(ngModel)]="calculation.oc_height"
+           (input)="updateCalculation('oc_height', $event.target.value)"
+    >
+  </label>
+
+  <label class="input-container">
+    <span>Area:</span>
+    <input disabled type="text"
+           [value]="calculation.oc_width * calculation.oc_height"
+    >
   </label>
   <hr>
 
@@ -40,8 +60,13 @@
   <label class="input-container">
     <span>Glazing type:</span>
     <select id="glazing_type" name="glazing_type">
-      <option value="Dome">Dome</option>
-      <option value="Glass">Glass</option>
+      <option
+        *ngFor="let a of calculationOptions.GlazingType"
+        value="{{ a }}"
+        (click)="updateCalculation('glazing_type', a)"
+      >
+        {{ a }}
+      </option>
     </select>
   </label>
 
@@ -49,9 +74,13 @@
   <label class="input-container">
     <span>Number of domes:</span>
     <select id="number_domes" name="number_domes">
-      <option value="Single">Single</option>
-      <option value="Double">Double</option>
-      <option value="Triple">Triple</option>
+      <option
+        *ngFor="let a of calculationOptions.NumberDomes"
+        value="{{ a }}"
+        (click)="updateCalculation('dome_quantity', a)"
+      >
+        {{ a }}
+      </option>
     </select>
   </label>
 
@@ -59,17 +88,28 @@
   <label class="input-container">
     <span>Tinted glazing</span>
     <select id="tinted_glazing" name="tinted_glazing">
-      <option value="Yes">Yes</option>
-      <option value="No">No</option>
+      <option value="Yes"
+              (click)="updateCalculation('tinted_glazing', true)"
+      >
+        Yes
+      </option>
+      <option value="No"
+              (click)="updateCalculation('tinted_glazing', false)"
+      >
+        No
+      </option>
     </select>
   </label>
+
   <!--  Frame finishing -->
   <label class="input-container">
     <span>Frame finishing:</span>
     <select id="frame_finishing" name="frame_finishing">
-      <option value="Black">Black</option>
-      <option value="Mill">Mill</option>
-      <option value="Brown">Brown</option>
+      <option *ngFor="let a of calculationOptions.FrameFinishing" value="{{ a }}"
+              (click)="updateCalculation('frame_finishing', false)"
+      >
+        {{ a }}
+      </option>
     </select>
   </label>
 
@@ -77,21 +117,21 @@
   <hr>
   <label class="input-container price bigger">
     <span>Price:</span>
-    <span>$430</span>
+    <span>{{ calculation.price }}</span>
   </label>
 
   <!--  Oversize fee -->
   <hr>
   <label class="input-container price">
     <span>Oversize fee:</span>
-    <span>$40</span>
+    <span>{{calculation.oversize_fee}}</span>
   </label>
 
-  <!--  Setup fee -->
+  <!--    Setup fee-->
   <hr>
   <label class="input-container price">
     <span>Setup fee:</span>
-    <span>$30</span>
+    <span>{{ calculation.setup_fee }}</span>
   </label>
 
 </article>
