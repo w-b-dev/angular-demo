@@ -5,11 +5,11 @@
   <!--  type of customer-->
   <label class="input-container">
     <span>Type of customer:</span>
-    <select id="type_customer" name="type_customer">
+    <select id="customer_type" name="customer_type"
+            (input)="updateCalculation($event.target.name, $event.target.value)">
       <option
         *ngFor="let a of calculationOptions.CustomerType"
         value="{{ a }}"
-        (click)="updateCalculation('customer_type', a)"
       >
         {{ a }}
       </option>
@@ -19,11 +19,11 @@
   <!--  skylight model -->
   <label class="input-container">
     <span>Skylight model:</span>
-    <select id="skylight_model" name="skylight_model">
+    <select id="skylight_model" name="skylight_model"
+            (input)="updateCalculation('skylight_model', $event.target.value)">
       <option
         *ngFor="let a of calculationOptions.SkylightModel"
         value="{{ a }}"
-        (click)="updateCalculation('skylight_model', a)"
       >
         {{ a }}
       </option>
