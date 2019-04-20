@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Calculation } from '../../Shared/types/Calculation';
+import { CustomerType, FrameFinishing, GlazingType, NumberDomes, SkylightModel, TintedGlazing } from '../../Shared/types/CalculatorEnum';
 
 @Component({
   selector: 'app-page-other',
@@ -50,10 +51,19 @@ export class PageOtherComponent implements OnInit {
     ],
   };
 
+  valorPadrao = 125;
+  customerType = CustomerType;
+  skylightModel = SkylightModel;
+  tintedGlazing = TintedGlazing;
+  numberDomes = NumberDomes;
+  frameFinishing = FrameFinishing;
+  glazingType = GlazingType;
+
   constructor() {
   }
 
   ngOnInit() {
+    // console.table(this.calculation);
   }
 
   log(a: any) {
@@ -74,17 +84,26 @@ export class PageOtherComponent implements OnInit {
   }
 
   updatePrice() {
-    /*TODO: implement*/
-    this.calculation.price = Math.round(Math.random() * 1000);
+    /*TODO: to continue PLEASE check the source formula */
+    this.calculation.price = Math.round(this.valorPadrao * (
+      ( this.customerType[this.calculation.customer_type] == null
+          ? 0
+          : this.customerType[this.calculation.customer_type]
+      )
+      * ( this.skylightModel[this.calculation.skylight_model] == null
+          ? 0
+          : this.skylightModel[this.calculation.skylight_model]
+      )
+    ));
   }
 
   updateOversizeFee() {
     /*TODO: implement*/
-    this.calculation.oversize_fee = Math.round(this.calculation.price * 0.15);
+    this.calculation.oversize_fee = Math.round(this.calculation.price * 0.1);
   }
 
   updateSetupFee() {
     /*TODO: implement*/
-    this.calculation.setup_fee = Math.round(this.calculation.price * 0.03);
+    this.calculation.setup_fee = Math.round(this.calculation.price * 0.01);
   }
 }
