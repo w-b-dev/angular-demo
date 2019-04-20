@@ -56,7 +56,7 @@ export class PageOtherComponent implements OnInit {
   ngOnInit() {
   }
 
-  log(a: object) {
+  log(a: any) {
     // snapshot of the store state
     console.clear();
     console.table(a);
@@ -74,14 +74,17 @@ export class PageOtherComponent implements OnInit {
   }
 
   updatePrice() {
+    /*TODO: implement*/
     this.calculation.price = Math.round(Math.random() * 1000);
   }
 
   updateOversizeFee() {
+    /*TODO: implement*/
     this.calculation.oversize_fee = Math.round(this.calculation.price * 0.15);
   }
 
   updateSetupFee() {
+    /*TODO: implement*/
     this.calculation.setup_fee = Math.round(this.calculation.price * 0.03);
   }
 }

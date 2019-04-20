@@ -5,7 +5,7 @@ export interface Calculation {
   oc_height: number;
   glazing_type: string;
   dome_quantity: string;
-  tinted_glazing: boolean;
+  tinted_glazing: string;
   frame_finishing: string;
   price: number;
   oversize_fee: number;
