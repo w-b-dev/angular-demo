@@ -78,6 +78,11 @@ select {
   }
 
   .notes {
-    color: crimson;
+    .custom {
+      color: dodgerblue;
+    }
+    .not-custom {
+      color: crimson;
+    }
   }
 }

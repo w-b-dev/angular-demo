@@ -55,8 +55,8 @@ export class PageOtherComponent implements OnInit {
 
   /*CONSTANTS*/
   valorPadrao = 125;
-  MEASURE1 = 60; //First upper limit (in inches) for the Setup fee
-  MEASURE2 = 96; //Second upper limit (in inches) for the Setup fee
+  MEASURE1 = 60; // First upper limit (in inches) for the Setup fee
+  MEASURE2 = 96; // Second upper limit (in inches) for the Setup fee
   SETUP_FEE1 = 50;
   SETUP_FEE2 = 100;
   SETUP_FEE3 = 300;
@@ -104,11 +104,7 @@ export class PageOtherComponent implements OnInit {
   // return true;
   // }
 
-  updatePrice() {
-    const custom = this.isCustom
-      ? this.CUSTOM_MARKUP
-      : 1;
-    const area = this.calculation.oc_height * this.calculation.oc_width;
+  calculateBaseCost(area: number) {
     let baseCost: number;
     if ( area <= this.AREA1 ) {
       baseCost = this.BASE_COST1;
@@ -120,6 +116,17 @@ export class PageOtherComponent implements OnInit {
     if ( area >= this.AREA2 ) {
       baseCost = this.BASE_COST3;
     }
+    return baseCost;
+  }
+
+  updatePrice() {
+    /*TODO: re-evaluate on every calculation*/
+    const custom = this.isCustom
+      ? this.CUSTOM_MARKUP
+      : 1;
+
+    const area = this.calculation.oc_height * this.calculation.oc_width;
+    const baseCost = this.calculateBaseCost(area);
 
     this.calculation.price = Math.round(
       (
@@ -133,16 +140,6 @@ export class PageOtherComponent implements OnInit {
         * this.selectTintedGlazing()
       ) + this.selectFrameFinishing(),
     );
-    // DEBUGGING PURPOSES
-    // console.info(custom);
-    // console.info(baseCost);
-    // console.info(area);
-    // console.info(this.selectCustomerType());
-    // console.info(this.selectSkylightModel());
-    // console.info(this.selectGlazingType());
-    // console.info(this.selectNumberDomes());
-    // console.info(this.selectTintedGlazing());
-    // console.info(this.selectFrameFinishing());
   }
 
   selectTintedGlazing() {

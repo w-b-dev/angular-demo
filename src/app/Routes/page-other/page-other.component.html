@@ -44,18 +44,14 @@
     <input disabled type="text" placeholder="0" [value]="calculation.oc_width * calculation.oc_height">
   </label>
   <aside class="notes">
-    <span *ngIf="isCustom; else notCustom">
-      NOTE: It is a custom measurement.
+    <span class="custom" *ngIf="isCustom; else notCustom">
+      Note: custom measures.
     </span>
-    <ng-template #notCustom>Standard pricing.</ng-template>
-
-<!--    <span *ngIf="updateSetupFee() === SETUP_FEE2">-->
-<!--      +Add SETUP fee: Larger than 60'.-->
-<!--    </span>-->
-
-<!--    <span *ngIf="updateSetupFee() === SETUP_FEE3">-->
-<!--      +Add SETUP fee: Larger than 300'.-->
-<!--    </span>-->
+    <ng-template #notCustom>
+      <span class="not-custom">
+        Note: (simulating) standard measures.
+      </span>
+    </ng-template>
   </aside>
   <hr>
 
@@ -73,7 +69,8 @@
   <!--  Number of domes -->
   <label class="input-container">
     <span>Number of domes:</span>
-    <select [disabled]="this.calculation.glazing_type === 'glass'" id="dome_quantity" name="dome_quantity" (input)="updateCalculation($event.target.id, $event.target.value)">
+    <select [disabled]="this.calculation.glazing_type === 'glass'" id="dome_quantity" name="dome_quantity"
+            (input)="updateCalculation($event.target.id, $event.target.value)">
       <option disabled selected value="invalid">Select one</option>
       <option *ngFor="let a of calculationOptions.DomeQuantity" value="{{ a }}">
         {{ a }}
