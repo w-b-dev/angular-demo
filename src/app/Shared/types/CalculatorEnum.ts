@@ -18,17 +18,17 @@ export enum GlazingType {
 
 export enum FrameFinishing {
   black = 1,
-  mill = 1,
-  brown = 1,
+  mill = 0,
+  brown = 0,
 }
 
-export enum NumberDomes {
+export enum DomeQuantity {
   single = 0.8,
   double = 1,
   triple = 1.45,
 }
 
 export enum TintedGlazing {
-  true = 1.15,
-  false = 1,
+  yes = 1.15,
+  no = 1,
 }
