@@ -105,7 +105,7 @@
     </select>
   </label>
 
-<!--  Quantity of equal domes-->
+  <!--  Quantity of equal domes-->
   <label class="input-container">
     <span>Quote quantity:</span>
     <input placeholder="1" type="number" id="quote_quantity" min="1" [(ngModel)]="calculation.quote_quantity"
@@ -127,15 +127,15 @@
   </label>
 
   <!--  Oversize fee -->
-  <hr>
-  <label class="input-container price">
-    <span>Oversize fee:</span>
+  <label class="input-container price"
+         *ngIf="calculation.oversize_fee !== 0 && calculation.oversize_fee !== null && calculation.glazing_type === 'glass'">
+    <span>Oversize fee for Glass:</span>
     <span>{{calculation.oversize_fee}}</span>
   </label>
 
   <!--    Setup fee-->
-  <hr>
-  <label class="input-container price">
+  <label class="input-container price"
+         *ngIf="calculation.setup_fee !== 0 && calculation.setup_fee !== null && calculation.glazing_type !== 'glass'">
     <span>Setup fee:</span>
     <span>{{ calculation.setup_fee }}</span>
   </label>

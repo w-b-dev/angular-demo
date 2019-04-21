@@ -60,10 +60,14 @@ export class PageOtherComponent implements OnInit {
   SETUP_FEE1 = 50;
   SETUP_FEE2 = 100;
   SETUP_FEE3 = 300;
+  OVERSIZE_FEE1 = 0.2;
+  OVERSIZE_FEE2 = 0.25;
+  OVERSIZE_FEE3 = 0.5;
   BASE_COST1 = 0.26;
   BASE_COST2 = 0.22;
   BASE_COST3 = 0.17;
   AREA1 = 1500;
+  AREA12 = 3000;
   AREA2 = 3500;
   CUSTOM_MARKUP = 1.3;
 
@@ -105,6 +109,10 @@ export class PageOtherComponent implements OnInit {
   // return true;
   // }
 
+  calculateArea() {
+    return this.calculation.oc_height * this.calculation.oc_width;
+  }
+
   calculateBaseCost(area: number) {
     let baseCost: number;
     if ( area <= this.AREA1 ) {
@@ -126,7 +134,7 @@ export class PageOtherComponent implements OnInit {
       ? this.CUSTOM_MARKUP
       : 1;
 
-    const area = this.calculation.oc_height * this.calculation.oc_width;
+    const area = this.calculateArea();
     const baseCost = this.calculateBaseCost(area);
 
     this.calculation.price = Math.round(
@@ -191,12 +199,25 @@ export class PageOtherComponent implements OnInit {
   }
 
   updateOversizeFee() {
-    //  TODO
+    if ( this.glazingType[this.calculation.glazing_type] !== 1 ) {
+      if ( this.calculateArea() >  this.AREA1 &&  this.calculateArea() < this.AREA12) {
+        this.calculation.oversize_fee = Math.round(this.OVERSIZE_FEE1 * this.calculation.price);
+      }
+      if ( this.calculateArea() >=  this.AREA12 &&  this.calculateArea() < this.AREA2) {
+        this.calculation.oversize_fee = Math.round(this.OVERSIZE_FEE2 * this.calculation.price);
+      }
+      if ( this.calculateArea() >=  this.AREA2) {
+        this.calculation.oversize_fee = Math.round(this.OVERSIZE_FEE3 * this.calculation.price);
+      }
+    } else {
+      this.calculation.oversize_fee = 0;
+      // return 0;
+    }
   }
 
   updateSetupFee() {
+    // Check if it is NOT glass
     if ( this.glazingType[this.calculation.glazing_type] === 1 ) {
-      // TODO: implement the return 0 for NOT custom
       const w1 = this.calculation.oc_width >= this.MEASURE1 && this.calculation.oc_width < this.MEASURE2;
       const h1 = this.calculation.oc_height >= this.MEASURE1 && this.calculation.oc_height < this.MEASURE2;
       const w2 = this.calculation.oc_width >= this.MEASURE2;
@@ -204,17 +225,17 @@ export class PageOtherComponent implements OnInit {
 
       if ( w2 || h2 ) {
         this.calculation.setup_fee = this.SETUP_FEE3;
-        return this.SETUP_FEE3;
+        // return this.SETUP_FEE3;
       } else if ( w1 || h1 ) {
         this.calculation.setup_fee = this.SETUP_FEE2;
-        return this.SETUP_FEE2;
+        // return this.SETUP_FEE2;
       } else {
         this.calculation.setup_fee = this.SETUP_FEE1;
-        return this.SETUP_FEE1;
+        // return this.SETUP_FEE1;
       }
     } else {
+      // It IS glass
       this.calculation.setup_fee = 0;
-      return 0;
     }
   }
 }
