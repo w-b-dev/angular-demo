@@ -12,6 +12,7 @@ export class PageOtherComponent implements OnInit {
   isCustom: boolean;
 
   calculation: Calculation = {
+    quote_quantity: 1,
     skylight_model: null,
     customer_type: null,
     glazing_type: null,
@@ -54,7 +55,6 @@ export class PageOtherComponent implements OnInit {
   };
 
   /*CONSTANTS*/
-  valorPadrao = 125;
   MEASURE1 = 60; // First upper limit (in inches) for the Setup fee
   MEASURE2 = 96; // Second upper limit (in inches) for the Setup fee
   SETUP_FEE1 = 50;
@@ -66,6 +66,7 @@ export class PageOtherComponent implements OnInit {
   AREA1 = 1500;
   AREA2 = 3500;
   CUSTOM_MARKUP = 1.3;
+
   /*INTERFACES*/
   customerType = CustomerType;
   skylightModel = SkylightModel;
@@ -130,7 +131,8 @@ export class PageOtherComponent implements OnInit {
 
     this.calculation.price = Math.round(
       (
-        custom
+        this.calculation.quote_quantity
+        * custom
         * baseCost
         * area
         * this.selectCustomerType()

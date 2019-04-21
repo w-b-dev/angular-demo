@@ -105,9 +105,23 @@
     </select>
   </label>
 
-  <!--  Price -->
+<!--  Quantity of equal domes-->
+  <label class="input-container">
+    <span>Quote quantity:</span>
+    <input placeholder="1" type="number" id="quote_quantity" min="1" [(ngModel)]="calculation.quote_quantity"
+           (input)="updateCalculation($event.target.id, $event.target.value)">
+  </label>
+
+  <!--  TOTAL SUM -->
   <hr>
   <label class="input-container price bigger">
+    <span>TOTAL SUM:</span>
+    <span>{{ calculation.price + calculation.oversize_fee + calculation.setup_fee }}</span>
+  </label>
+
+  <!--  Price -->
+  <hr>
+  <label class="input-container price">
     <span>Price:</span>
     <span>{{ calculation.price }}</span>
   </label>

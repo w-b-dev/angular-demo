@@ -7,6 +7,7 @@ export interface Calculation {
   dome_quantity: string;
   tinted_glazing: string;
   frame_finishing: string;
+  quote_quantity: number;
   price: number;
   oversize_fee: number;
   setup_fee: number;
