@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { MsalModule } from '@azure/msal-angular';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,6 +27,9 @@ import { PageOtherComponent } from './Routes/page-other/page-other.component';
     HttpClientModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     FormsModule,
+    MsalModule.forRoot({
+      clientID: '58c01ef2-9cdd-44a7-9652-48d8ba21c18c',
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

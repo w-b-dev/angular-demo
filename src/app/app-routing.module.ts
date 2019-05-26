@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { MsalGuard } from '@azure/msal-angular';
 import { PageNotFoundComponent } from './Routes/page-not-found/page-not-found.component';
 import { PageOtherComponent } from './Routes/page-other/page-other.component';
 
 const routes: Routes = [
   {
     path: '',
+    canActivate : [MsalGuard],
     component: PageOtherComponent,
     data: {
       animationFor: 'public',
@@ -13,6 +15,7 @@ const routes: Routes = [
   },
   {
     path: 'private',
+    canActivate : [MsalGuard],
     loadChildren: './Routes/page-landing/page-landing.module#PageLandingModule',
     data: {
       animationFor: 'private',
