@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { environment } from '../../environments/environment';
-import { WPRoutes } from './types/Wordpress';
+import { environment } from '../../../environments/environment';
+import { WPRoutes } from '../types/Wordpress';
 
 @Injectable({
   providedIn: 'root',
