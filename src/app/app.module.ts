@@ -28,7 +28,7 @@ import { PageOtherComponent } from './Routes/page-other/page-other.component';
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     FormsModule,
     MsalModule.forRoot({
-      clientID: '58c01ef2-9cdd-44a7-9652-48d8ba21c18c',
+      clientID: environment.clientID,
     }),
   ],
   providers: [],
