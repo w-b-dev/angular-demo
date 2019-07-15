@@ -7,7 +7,6 @@ import { PageOtherComponent } from './Routes/page-other/page-other.component';
 const routes: Routes = [
   {
     path: '',
-    canActivate : [MsalGuard],
     component: PageOtherComponent,
     data: {
       animationFor: 'public',

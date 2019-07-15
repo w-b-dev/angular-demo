@@ -8,15 +8,15 @@ import { Component, OnInit } from '@angular/core';
          title="Homepage">
         <span class="icon">🏠</span>
         <!--hidden-on-desktop-->
-        <span class="description">Calculator</span>
+        <span class="description">Home</span>
       </a>
       <a routerLink="private" routerLinkActive="active" class="nav-link" title="Authenticated page">
         <span class="icon">🔔</span>
-        <span class="description">Admin</span>
+        <span class="description">Protected</span>
       </a>
       <a routerLink="login" routerLinkActive="active" class="nav-link" title="Login and Logout feature">
         <span class="icon">🔒</span>
-        <span class="description">Sign-in/out</span>
+        <span class="description">Login</span>
       </a>
     </nav>
   `,

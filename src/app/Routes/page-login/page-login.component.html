@@ -1,9 +1,18 @@
 <article class="demo-article">
-  <fieldset class="fields-container">
-    <label class="email-label">
-      <span>Email</span>
-      <input placeholder="xxxxxxxx@yyyy.zzz" type="email">
-    </label>
-    <!--    <input class="confirmation-button" type="button" value="Login">-->
-  </fieldset>
+  <h3 *ngIf="!response.length; else elseBlock" style="color: crimson">No data yet.</h3>
+  <label class="input-container">
+    <span>Choose a response:</span>
+    <select id="response" name="response" (input)="setResponse($event)">
+      <option disabled selected value="invalid">Select one</option>
+      <option *ngFor="let el of source" value="{{ el }}">
+        {{ el }}
+      </option>
+    </select>
+  </label>
+  <ng-template #elseBlock>
+    <h2>User data (loaded from authentication response)</h2>
+    <p style="padding: 2rem; border: 1px solid crimson; background-color: rgba(220,20,60,0.05)">
+      {{response | json}}
+    </p>
+  </ng-template>
 </article>
