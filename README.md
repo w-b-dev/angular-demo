@@ -1,12 +1,6 @@
-# Welcom
+## Environment file
+Make sure to re-enable references to `src\environments\environment.ts` and add content such as:
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.1.
-
-## Environment
-
-Files to be update include the Environment ones.
-
-- src\environments\environment.ts 
 ```js
 export const environment = {
   production: false,
