@@ -53,7 +53,7 @@
               "src/styles.scss"
             ],
             "scripts": [],
-            "es5BrowserSupport": false
+            "aot": true
           },
           "configurations": {
             "production": {
@@ -67,9 +67,7 @@
               "optimization": true,
               "outputHashing": "bundles",
               "sourceMap": true,
-              "extractCss": true,
               "namedChunks": true,
-              "aot": true,
               "extractLicenses": false,
               "vendorChunk": true,
               "buildOptimizer": true,
@@ -78,6 +76,10 @@
                   "type": "initial",
                   "maximumWarning": "1mb",
                   "maximumError": "2mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
                 }
               ],
               "serviceWorker": true,

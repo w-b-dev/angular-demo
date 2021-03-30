@@ -13,14 +13,14 @@ const routes: Routes = [
   },
   {
     path: 'private',
-    loadChildren: './Routes/page-landing/page-landing.module#PageLandingModule',
+    loadChildren: () => import('./Routes/page-landing/page-landing.module').then(m => m.PageLandingModule),
     data: {
       animationFor: 'private',
     },
   },
   {
     path: 'login',
-    loadChildren: './Routes/page-login/page-login.module#PageLoginModule',
+    loadChildren: () => import('./Routes/page-login/page-login.module').then(m => m.PageLoginModule),
     data: {
       animationFor: 'login',
     },
@@ -37,10 +37,7 @@ const routes: Routes = [
 /*For feature modules, call the RouterModule.forChild method to register additional routes.*/
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes,
-      // <-- debugging purposes only
-      // { enableTracing: true },
-    ),
+    RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }),
   ],
   exports: [RouterModule],
 })
